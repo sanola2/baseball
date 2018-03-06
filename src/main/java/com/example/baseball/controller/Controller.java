@@ -10,5 +10,4 @@ public class Controller {
        // model.addAttribute("result", "maiasdasdn"); 포스트 인자 넘기는것
         return "index";
     }
-
 }
