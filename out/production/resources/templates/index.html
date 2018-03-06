@@ -4,6 +4,10 @@
 </head>
 <body>
     <h1>Baseball</h1>
-    <h5 th:text="${result}"></h5>
+    <form id="game-init" method="post" action="/api/init">
+        <input type="text" name="playerName" placeholder="이름을 적어주세요!">
+        <input type="number" name="maxTryNumber" placeholder="최대 시도가능 횟수를 적어주세요!">
+        <input type="submit" value="게임 정보 등록">
+    </form>
 </body>
 </html>
