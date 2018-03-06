@@ -32,4 +32,6 @@ public class Controller {
 
         Date date = new Date();
         gameInfoRepository.save(new GameInfo(baseBallMethod.generateProblemNumber(), playerName, date, maxTryNumber));
-     
+        return "redirect:/";
+    }
+}
