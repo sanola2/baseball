@@ -1,13 +1,13 @@
 package com.example.baseball.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
-@Entity @Getter @Setter
+@Entity @Getter
 public class GameInfo {
     @Id
     @GeneratedValue
@@ -15,13 +15,17 @@ public class GameInfo {
 
     private String number;
     private String playerName;
-    private String date;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
+
     private int maxTryNumber;
 
     private int triedNumber;
     private int point;
 
-    public GameInfo(String number, String playerName, String date, int maxTryNumber) {
+    @Builder
+    public GameInfo(String number, String playerName, Date date, int maxTryNumber) {
         this.number = number;
         this.playerName = playerName;
         this.date = date;
