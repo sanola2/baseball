@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity @Getter
+@Entity @Getter @Setter
 public class GameInfo {
     @Id
     @GeneratedValue

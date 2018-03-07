@@ -28,11 +28,4 @@ public class BaseballGameTests {
         System.out.println("junit Test : " + gameInfo);
         Assert.assertEquals(false, gameInfoValidator.formNumberValidate(gameInfo));
     }
-
-    @Test
-    public void stringValidate() {
-        System.out.println("junit Test : " + gameInfo);
-        Assert.assertEquals(false, gameInfoValidator.formStringValidate(gameInfo));
-    }
-
 }
