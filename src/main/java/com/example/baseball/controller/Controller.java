@@ -32,7 +32,7 @@ public class Controller {
             , @RequestParam("playerName") String playerName, @RequestParam("maxTryNumber") int maxTryNumber) {
 
         Date date = new Date();
-        gameInfoRepository.save(new GameInfo(baseBallMethod.generateProblemNumber(), playerName, date, maxTryNumber));
+        gameInfoRepository.save(new GameInfo("101", playerName, date, maxTryNumber));
         return "redirect:/";
     }
 }

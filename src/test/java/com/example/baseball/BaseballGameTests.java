@@ -2,23 +2,37 @@ package com.example.baseball;
 
 import com.example.baseball.model.GameInfo;
 import com.example.baseball.util.BaseBallUtil;
+import com.example.baseball.validator.GameInfoValidator;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.Assert;
+
+import java.util.Date;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
 public class BaseballGameTests {
-	BaseBallMethod baseBallMethod;
-	BaseBallUtil baseBallUtil;
+    GameInfoValidator gameInfoValidator = new GameInfoValidator();
+    GameInfo gameInfo;
 
-	@Test
-	public void contextLoads() {
-		GameInfo gameInfo;
-	//	baseBallUtil.numberFormValidate();
-	}
+    @Before
+    public void init() {
+        Date date = new Date();
+        gameInfo = new GameInfo("101", "", date, 0);
+    }
+
+    @Test
+    public void numValidate() {
+        System.out.println("junit Test : " + gameInfo);
+        Assert.assertEquals(false, gameInfoValidator.formNumberValidate(gameInfo));
+    }
+
+    @Test
+    public void stringValidate() {
+        System.out.println("junit Test : " + gameInfo);
+        Assert.assertEquals(false, gameInfoValidator.formStringValidate(gameInfo));
+    }
 
 }

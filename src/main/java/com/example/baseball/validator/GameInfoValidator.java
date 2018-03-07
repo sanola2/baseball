@@ -16,4 +16,19 @@ public class GameInfoValidator implements Validator {
         GameInfo gameInfo = (GameInfo) target;
 
     }
+
+
+    //입력받은 사용자 이름 널 체크
+    public boolean formStringValidate(GameInfo data) {
+        if(data.getPlayerName() == null || data.getPlayerName().trim().isEmpty())
+            return false;
+        return true;
+    }
+
+    //입력 받은 숫자 유효성 체크
+    public boolean formNumberValidate(GameInfo data) {
+        if(data.getMaxTryNumber() == 0)
+            return false;
+        return true;
+    }
 }
