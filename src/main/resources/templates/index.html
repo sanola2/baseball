@@ -12,6 +12,12 @@
         <input type="submit" value="게임 정보 등록">
     </form>
 
-    <button th:action="@{/api/test}">Test</button>
+    <button id="a" method="get">Test</button>
+    <script>
+        var aa = document.getElementById("a");
+        aa.addEventListener("click", function () {
+            alert("clicked!!")
+        })
+    </script>
 </body>
 </html>
