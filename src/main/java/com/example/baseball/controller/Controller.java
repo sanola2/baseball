@@ -18,7 +18,7 @@ import java.util.Date;
 @org.springframework.stereotype.Controller
 public class Controller {
     private final String folderRoot = "/api";
-    BaseBallMethod baseBallMethod;
+    BaseBallMethod baseBallMethod = new BaseBallMethod();
 
     @Autowired
     private GameInfoRepository gameInfoRepository;
@@ -36,7 +36,7 @@ public class Controller {
         String page = "redirect:/";
         Date date = new Date();
 
-        gameInfo.setNumber("111");
+        gameInfo.setNumber(baseBallMethod.genProblemNumber(gameInfoRepository));
         gameInfo.setDate(date);
 
         GameInfoValidator validator = new GameInfoValidator();
@@ -48,4 +48,10 @@ public class Controller {
         }
         return page;
     }
+
+    /*@RequestMapping(folderRoot + "/test")
+    public String test(Model model) {
+        System.out.println(gameInfoRepository.findAllProblemNumbers());
+        return "play";
+    }*/
 }
