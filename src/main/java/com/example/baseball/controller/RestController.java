@@ -3,8 +3,11 @@ package com.example.baseball.controller;
 import com.example.baseball.BaseBallMethod;
 import com.example.baseball.model.GameInfo;
 import com.example.baseball.model.GameInfoRepository;
+import com.example.baseball.model.ResultCode;
 import com.example.baseball.validator.GameInfoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,10 +27,10 @@ public class RestController {
     private GameInfoRepository gameInfoRepository;
 
     @RequestMapping("/init")
-    public String gameInit(@ModelAttribute("GameInfo") GameInfo gameInfo, BindingResult result) {
+    public ResponseEntity<?> gameInit(@ModelAttribute("GameInfo") GameInfo gameInfo, BindingResult result) {
 
-        String page = "redirect:/";
         Date date = new Date();
+
 
         gameInfo.setNumber(baseBallMethod.genProblemNumber(gameInfoRepository));
         gameInfo.setDate(date);
@@ -37,9 +40,10 @@ public class RestController {
 
         if(!result.hasErrors()) {
             gameInfoRepository.save(gameInfo);
-            page = "play";
+            return new ResponseEntity<GameInfo>(gameInfo, HttpStatus.ACCEPTED);
         }
-        return page;
+        ResultCode resultCode = new ResultCode("0");
+        return new ResponseEntity<ResultCode>(resultCode, HttpStatus.BAD_REQUEST);
     }
 
     @RequestMapping("/test")
