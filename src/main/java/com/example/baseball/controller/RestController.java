@@ -10,9 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -31,7 +29,6 @@ public class RestController {
 
         Date date = new Date();
 
-
         gameInfo.setNumber(baseBallMethod.genProblemNumber(gameInfoRepository));
         gameInfo.setDate(date);
 
@@ -40,15 +37,18 @@ public class RestController {
 
         if(!result.hasErrors()) {
             gameInfoRepository.save(gameInfo);
-            return new ResponseEntity<GameInfo>(gameInfo, HttpStatus.ACCEPTED);
+            ResultCode resultCode = new ResultCode("200");
+            resultCode.setGameInfo(gameInfo);
+            return new ResponseEntity<ResultCode>(resultCode, HttpStatus.ACCEPTED);
         }
         ResultCode resultCode = new ResultCode("0");
         return new ResponseEntity<ResultCode>(resultCode, HttpStatus.BAD_REQUEST);
     }
 
-    @RequestMapping("/test")
-    public String test(Model model) {
+    @RequestMapping(value = "/test")
+    public String test(@RequestParam String answer) {
         System.out.println("버튼 동작");
+        System.out.println(answer);
         return "play";
     }
 

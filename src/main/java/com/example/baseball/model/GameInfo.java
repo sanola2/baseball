@@ -1,14 +1,11 @@
 package com.example.baseball.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity @Getter @Setter @ToString
+@Entity @Getter @Setter
 public class GameInfo {
     @Id
     @GeneratedValue
