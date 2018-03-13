@@ -17,6 +17,10 @@ public class ResultCode {
     @OneToOne
     private GameInfo gameInfo;
 
+    private int strikeCnt;
+    private int ballCnt;
+
+
     @Builder
     public ResultCode(String errorCode) {
         this.errorCode = errorCode;

@@ -32,4 +32,36 @@ public class BaseBallMethod {
 
         return problemNumber;
     }
+
+    //정답 체크 int 의 index 0 = strike, 1 = ball, 2 = point
+    public int[] evalAnswer(int problem, String answer) {
+        int strike = 0;
+        int ball = 0;
+        int[] result = new int[3];
+
+        String strProblem = String.valueOf(problem);
+
+        for(int i = 0; i< answer.length(); i++) {
+            for(int j = 0; j< strProblem.length(); j++) {
+                if(answer.charAt(i) == strProblem.charAt(j)) {
+                    if(answer.charAt(i) == strProblem.charAt(i)) {
+                        strike++;
+                    } else
+                        ball++;
+                    break;
+                }
+            }
+        }
+        for(int k=0; k< 3; k++)
+        result[0] = strike;
+        result[1] = ball;
+
+        if(strike == 3)
+            result[2] = 10000;
+        else
+            result[2] = strike*3 + ball*1;
+
+        return result;
+    }
+
 }

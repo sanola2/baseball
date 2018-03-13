@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.Assert;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +19,35 @@ import java.util.Random;
 @RunWith(SpringRunner.class)
 public class BaseballGameTests {
 
+    public String eval() {
+        int problem = 135;
+        String answer = "111";
+        int strike = 0;
+        int ball = 0;
+
+        String strProblem = String.valueOf(problem);
+
+        for(int i = 0; i< answer.length(); i++) {
+            for(int j = 0; j< strProblem.length(); j++) {
+                if(answer.charAt(i) == strProblem.charAt(j)) {
+                    if(answer.charAt(i) == strProblem.charAt(i)) {
+                        strike++;
+                    } else
+                        ball++;
+                    break;
+                }
+            }
+        }
+
+        return strike + "str" + ball + "ball";
+    }
+
+    @Test
+    public void evalAnswer() {
+
+        Assert.assertEquals("0str3ball", eval());
+    }
+//charAt 지ㅈ
     @Test
     public void numValidate() {
         GameInfoValidator gameInfoValidator = new GameInfoValidator();

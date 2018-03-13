@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.SortedSet;
 
 @CrossOrigin("*")
 @org.springframework.web.bind.annotation.RestController
@@ -45,10 +46,23 @@ public class RestController {
         return new ResponseEntity<ResultCode>(resultCode, HttpStatus.BAD_REQUEST);
     }
 
+    @RequestMapping("/answer")
+    public ResponseEntity<?> getAnswer(@RequestParam String answer, @RequestParam int gameIdx) {
+        int[] result;
+        result = baseBallMethod.evalAnswer(gameInfoRepository.findNumberByIdx(gameIdx), answer);
+
+        gameInfoRepository.setPointAndTryNum(result[2], gameIdx);
+
+        ResultCode resultCode = new ResultCode("200");
+        resultCode.setStrikeCnt(result[0]);
+        resultCode.setBallCnt(result[1]);
+        return new ResponseEntity<ResultCode>(resultCode, HttpStatus.ACCEPTED);
+    }
+
     @RequestMapping(value = "/test")
     public String test(@RequestParam String answer) {
         System.out.println("버튼 동작");
-        System.out.println(answer);
+
         return "play";
     }
 
