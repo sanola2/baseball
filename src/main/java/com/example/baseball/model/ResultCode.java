@@ -5,11 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-@Entity @Getter @Setter @NoArgsConstructor
+@Getter @Setter @NoArgsConstructor
 public class ResultCode {
     @Id
     private String errorCode;
@@ -19,7 +18,6 @@ public class ResultCode {
 
     private int strikeCnt;
     private int ballCnt;
-
 
     @Builder
     public ResultCode(String errorCode) {

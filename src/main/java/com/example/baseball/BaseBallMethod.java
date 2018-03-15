@@ -1,5 +1,6 @@
 package com.example.baseball;
 
+import com.example.baseball.model.GameInfo;
 import com.example.baseball.model.GameInfoRepository;
 
 import java.util.ArrayList;
@@ -63,5 +64,32 @@ public class BaseBallMethod {
 
         return result;
     }
+
+    //db에서 승리한 데이터를 가져와서 어떠게 가장 적은 시도인지 판별
+    public List<GameInfo> getBestHistory(List<GameInfo> winDatas) {
+        List<GameInfo> result = new ArrayList<GameInfo>();
+        result.add(winDatas.get(0));
+
+        for(int i = 1; i < winDatas.size(); i++) {
+            int winDatasTriedNumber = winDatas.get(i).getTriedNumber();
+            if(result.get(0).getTriedNumber() > winDatasTriedNumber) {
+                result.clear();
+                result.add(winDatas.get(i));
+            } else if (result.get(0).getTriedNumber() == winDatasTriedNumber) {
+                boolean flag = true;
+
+                for(int j = 0; j < result.size(); j++) {
+                    if(result.get(j).getIdx() == winDatas.get(i).getIdx())
+                        flag = false;
+                }
+
+                if(flag)
+                    result.add(winDatas.get(i));
+            }
+        }
+
+        return result;
+    }
+
 
 }

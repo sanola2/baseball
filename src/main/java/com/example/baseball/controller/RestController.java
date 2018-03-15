@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.SortedSet;
 
 @CrossOrigin("*")
@@ -59,11 +61,10 @@ public class RestController {
         return new ResponseEntity<ResultCode>(resultCode, HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(value = "/test")
-    public String test(@RequestParam String answer) {
-        System.out.println("버튼 동작");
-
-        return "play";
+    @RequestMapping("/history")
+    public List<?> getBestHistory() {
+        List<GameInfo> result = baseBallMethod.getBestHistory(gameInfoRepository.findAllWinHistory());
+        return result;
     }
 
 }

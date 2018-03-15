@@ -18,4 +18,7 @@ public interface GameInfoRepository extends JpaRepository<GameInfo, Integer> {
     @Transactional
     @Query(value = "update game_info set point = point + ?1, tried_number = tried_number + 1 where idx = ?2", nativeQuery = true)
     void setPointAndTryNum(int result, int idx);
+
+    @Query("select g from GameInfo as g where point >= 10000")
+    List<GameInfo> findAllWinHistory();
 }

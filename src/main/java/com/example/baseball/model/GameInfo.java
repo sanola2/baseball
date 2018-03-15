@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity @Getter @Setter
+@Entity @Getter @Setter @NoArgsConstructor
 public class GameInfo {
     @Id
     @GeneratedValue
@@ -31,4 +31,5 @@ public class GameInfo {
         this.triedNumber = 0;
         this.point = 0;
     }
+
 }
