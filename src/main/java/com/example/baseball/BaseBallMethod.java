@@ -9,14 +9,27 @@ import java.util.Random;
 
 public class BaseBallMethod {
 
-    //정답이 될 숫자를 생성하는 메소드 (현재는 3자리숫자로 만듦)
+    //정답이 될 숫자를 생성하는 메소드
     public String genProblemNumber(GameInfoRepository gameInfoRepository, int probNum) {
         String result = "";
+        int numCnt;
+        ArrayList<Integer> numTemp = new ArrayList<>();
         Random rand = new Random();
 
-        for (int i = 0; i < probNum; i++) {
-            int num = rand.nextInt(8);
-            result += Integer.toString(num + 1);
+        for(int i = 0; i < 9; i++)
+            numTemp.add(i+1);
+
+        if(probNum > 9)
+            numCnt = 9;
+        else
+            numCnt = probNum;
+
+        for (int i = 0; i < numCnt; i++) {
+            int ranNum = rand.nextInt(numTemp.size());
+            int num = numTemp.get(ranNum);
+            numTemp.remove(ranNum);
+
+            result += Integer.toString(num);
         }
         result = checkProblemNumber(gameInfoRepository, result, probNum);
 

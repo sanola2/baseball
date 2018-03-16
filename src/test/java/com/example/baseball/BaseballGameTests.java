@@ -1,7 +1,6 @@
 package com.example.baseball;
 
 import com.example.baseball.model.GameInfo;
-import com.example.baseball.util.BaseBallUtil;
 import com.example.baseball.validator.GameInfoValidator;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.Before;
@@ -18,6 +17,39 @@ import java.util.Random;
 
 @RunWith(SpringRunner.class)
 public class BaseballGameTests {
+
+    @Test
+    public void arrayRmTest() {
+        String result = "";
+        ArrayList<Integer> nums = new ArrayList<>();
+        Random rand = new Random();
+        for(int i=0; i < 9; i++)
+            nums.add(i+1);
+
+        for (int j=0; j < 9; j++) {
+            System.out.println(nums.get(j));
+        }
+
+        for (int i = 0; i < 9; i++) {
+            int ran = rand.nextInt(nums.size());
+            int num = nums.get(ran);
+            nums.remove(ran);
+
+            result += Integer.toString(num);
+        }
+
+        System.out.println(result);
+        System.out.println(nums.size());
+    }
+    @Test
+    public void strContainTest() {
+        String str = "1234";
+        int num = 4;
+        boolean result;
+
+        result = str.contains(Integer.toString(num));
+        Assert.assertEquals(true, result);
+    }
 
     public String eval() {
         int problem = 135;
