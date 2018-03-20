@@ -1,6 +1,6 @@
 package com.example.baseball.controller;
 
-import com.example.baseball.BaseBallMethod;
+import com.example.baseball.BaseBallMethodService;
 import com.example.baseball.model.GameInfo;
 import com.example.baseball.model.GameInfoRepository;
 import com.example.baseball.model.ResultCode;
@@ -8,21 +8,19 @@ import com.example.baseball.validator.GameInfoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.SortedSet;
 
 @CrossOrigin("*")
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/*")
 public class RestController {
 
-    BaseBallMethod baseBallMethod = new BaseBallMethod();
+    @Autowired
+    BaseBallMethodService baseBallMethod;
 
     @Autowired
     private GameInfoRepository gameInfoRepository;

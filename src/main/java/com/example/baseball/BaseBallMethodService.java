@@ -2,12 +2,14 @@ package com.example.baseball;
 
 import com.example.baseball.model.GameInfo;
 import com.example.baseball.model.GameInfoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BaseBallMethod {
+@Service
+public class BaseBallMethodService {
 
     //정답이 될 숫자를 생성하는 메소드
     public String genProblemNumber(GameInfoRepository gameInfoRepository, int probNum) {
